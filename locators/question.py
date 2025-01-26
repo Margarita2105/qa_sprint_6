@@ -18,3 +18,6 @@ class Locators:
     charger_text = (By.XPATH, ".//div[@id='accordion__panel-5']")
     cancel = (By.XPATH, ".//div[@id='accordion__heading-6']")
     cancel_text = (By.XPATH, ".//div[@id='accordion__panel-6']")
+    list_question = [how_much, several_scooters, rental_time, scooter_today, extend_or_return, charger, cancel, mkad]
+    list_answer = [how_much_text, several_scooters_text, rental_time_text, scooter_today_text, extend_or_return_text,
+                   charger_text, cancel_text, mkad_text]

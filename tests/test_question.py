@@ -1,92 +1,44 @@
 import allure
+import  pytest
 from selenium import webdriver
 
-from baseclass.question import Questions
-import data
+import urls
+from base_pages.question_page import QuestionsPage
+from data import Data
 from locators.question import Locators
 
 
 class TestOrderForm:
     driver = None
 
+    @allure.step('Открываем браузер Firefox')
     @classmethod
     def setup_class(cls):
-        # создали драйвер для браузера
+         #создали драйвер для браузера
         cls.driver = webdriver.Firefox()
 
-    @allure.title('Получаем ответ на первый вопрос')
+    @allure.title('Получаем ответ на вопрос')
     @allure.description(
-        'На странице ищем первый вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_question_how_much(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.how_much, Locators.how_much_text)
+        'На странице ищем вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
+    @pytest.mark.parametrize("questions, locator_q, locator_a", [
+        (Data.list_question[0], Locators.list_question[0], Locators.list_answer[0]),
+        (Data.list_question[1], Locators.list_question[1], Locators.list_answer[1]),
+        (Data.list_question[2], Locators.list_question[2], Locators.list_answer[2]),
+        (Data.list_question[3], Locators.list_question[3], Locators.list_answer[3]),
+        (Data.list_question[4], Locators.list_question[4], Locators.list_answer[4]),
+        (Data.list_question[5], Locators.list_question[5], Locators.list_answer[5]),
+        (Data.list_question[6], Locators.list_question[6], Locators.list_answer[6]),
+        (Data.list_question[7], Locators.list_question[7], Locators.list_answer[7])
+        ])
+    def test_question(self, questions, locator_q, locator_a):
+        ques = QuestionsPage(self.driver)
+        ques.get_url(urls.squter)
+        text = ques.question(locator_q, locator_a)
 
-        assert data.how_much == text
+        assert questions == text
 
-    @allure.title('Получаем ответ на второй вопрос')
-    @allure.description(
-        'На странице ищем второй вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_question_several_scooters(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.several_scooters, Locators.several_scooters_text)
-
-        assert data.several_scooters == text
-
-    @allure.title('Получаем ответ на третий вопрос')
-    @allure.description(
-        'На странице ищем третий вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_calculated_rental_time(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.rental_time, Locators.rental_time_text)
-
-        assert data.rental_time == text
-
-    @allure.title('Получаем ответ на четвертый вопрос')
-    @allure.description(
-        'На странице ищем четвертый вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_scooter_directly_for_today(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.scooter_today, Locators.scooter_today_text)
-
-        assert data.scooter_today == text
-
-    @allure.title('Получаем ответ на пятый вопрос')
-    @allure.description(
-        'На странице ищем пятый вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_extend_or_return_scooter(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.extend_or_return, Locators.extend_or_return_text)
-
-        assert data.extend_or_return == text
-
-    @allure.title('Получаем ответ на шестой вопрос')
-    @allure.description(
-        'На странице ищем шестой вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_bring_charger(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.charger, Locators.charger_text)
-
-        assert data.charger == text
-
-    @allure.title('Получаем ответ на седьмой вопрос')
-    @allure.description(
-        'На странице ищем седьмой вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_cancel_order(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.cancel, Locators.cancel_text)
-
-        assert data.cancel == text
-
-    @allure.title('Получаем ответ на восьмой вопрос')
-    @allure.description(
-        'На странице ищем восьмой вопрос, скроллим до него, кликаем на вопрос, ждем когда появится ответ, получаем текст ответа и сравниваем с тем, что должно быть.')
-    def test_question_mkad(self):
-        ques = Questions(self.driver)
-        text = ques.question(Locators.mkad, Locators.mkad_text)
-
-        assert data.mkad == text
-
+    @allure.step('Закрываем браузер')
     @classmethod
     def teardown_class(cls):
-        # закрыли браузер
+    #    # закрыли браузер
         cls.driver.quit()
