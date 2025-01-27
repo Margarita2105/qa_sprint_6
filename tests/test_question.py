@@ -13,7 +13,6 @@ class TestOrderForm:
 
     @classmethod
     def setup_class(cls):
-         #создали драйвер для браузера
         cls.driver = webdriver.Firefox()
 
     @allure.title('Получаем ответ на вопрос')
@@ -38,5 +37,4 @@ class TestOrderForm:
 
     @classmethod
     def teardown_class(cls):
-    #    # закрыли браузер
         cls.driver.quit()

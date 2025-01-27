@@ -1,10 +1,12 @@
+import allure
 from base_pages.base_page import BasePage
-#Переход к вопросам
+
 class QuestionsPage(BasePage):
 
     def __init__(self, driver):
         BasePage.__init__(self, driver)
 
+    @allure.step('Сравниваем ответ на вопрос из Вопросов о важном с текстом по требованиям.')
     def question(self, locator, locator_text):
         # находим вопрос
         element = self.find_element_on_page(locator)
