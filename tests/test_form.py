@@ -10,7 +10,6 @@ from locators.form import Locators
 class TestOrderForm:
     driver = None
 
-    @allure.step('Открываем браузер Firefox')
     @classmethod
     def setup_class(cls):
         # создали драйвер для браузера
@@ -32,7 +31,6 @@ class TestOrderForm:
 
         assert Data.win_text in self.driver.find_element(*Locators.window).text
 
-    @allure.step('Закрываем браузер')
     @classmethod
     def teardown_class(cls):
         # закрыли браузер

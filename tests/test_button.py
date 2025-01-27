@@ -10,7 +10,6 @@ from locators.button import Locators
 class TestButton:
     driver = None
 
-    @allure.step('Открываем браузер Firefox')
     @classmethod
     def setup_class(cls):
         # создали драйвер для браузера
@@ -25,7 +24,6 @@ class TestButton:
 
         assert button.press_button(butt, Locators.form_name) == urls.order_form
 
-    @allure.step('Закрываем браузер')
     @classmethod
     def teardown_class(cls):
         # закрыли браузер

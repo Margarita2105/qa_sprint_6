@@ -9,7 +9,6 @@ import urls
 class TestScooterDzenPage:
     driver = None
 
-    @allure.step('Открываем браузер Chrome')
     @classmethod
     def setup_class(cls):
         # создали драйвер для браузера
@@ -35,7 +34,6 @@ class TestScooterDzenPage:
 
         assert url == urls.dzen
 
-    @allure.step('Закрываем браузер')
     @classmethod
     def teardown_class(cls):
         # закрыли браузер

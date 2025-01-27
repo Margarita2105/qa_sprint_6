@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-
 class Locators:
+
     how_much = (By.XPATH, ".//div[@id='accordion__heading-0']")
     how_much_text = (By.XPATH, ".//div[@id='accordion__panel-0']")
     mkad = (By.XPATH, ".//div[@id='accordion__heading-7']")

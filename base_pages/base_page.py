@@ -13,7 +13,7 @@ class BasePage:
         return self.driver.find_element(*locator)
 
     def text_of_element(self, locator):
-        text = self.driver.find_element(locator).text
+        text = self.driver.find_element(*locator).text
 
         return text
 

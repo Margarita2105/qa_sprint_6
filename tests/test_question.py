@@ -11,7 +11,6 @@ from locators.question import Locators
 class TestOrderForm:
     driver = None
 
-    @allure.step('Открываем браузер Firefox')
     @classmethod
     def setup_class(cls):
          #создали драйвер для браузера
@@ -37,7 +36,6 @@ class TestOrderForm:
 
         assert questions == text
 
-    @allure.step('Закрываем браузер')
     @classmethod
     def teardown_class(cls):
     #    # закрыли браузер
