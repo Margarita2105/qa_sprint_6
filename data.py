@@ -29,5 +29,11 @@ class Data:
 class Time:
     currentTimeDate_1 = datetime.now() + timedelta(days=1)
     currentTimeDate_2 = datetime.now() + timedelta(days=2)
-    currentTime_1 = currentTimeDate_1.strftime('%d')
-    currentTime_2 = currentTimeDate_2.strftime('%d')
+    if currentTimeDate_1.strftime('%d').startswith('0'):
+        currentTime_1 = currentTimeDate_1.strftime('%d').replace("0", "", 1)
+    else:
+        currentTime_1 = currentTimeDate_1.strftime('%d')
+    if currentTimeDate_2.strftime('%d').startswith('0'):
+        currentTime_2 = currentTimeDate_2.strftime('%d').replace("0", "", 1)
+    else:
+        currentTime_2 = currentTimeDate_2.strftime('%d')
